@@ -1,0 +1,16 @@
+<% if flash[:notice] %>
+	<p class="flash"><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_tag(:controller => "/info", :action=> "post_info") do %>
+	<p><%= label_tag(:text_val, "Words:") %>
+	<%= text_field_tag(:text_val) %></p>
+
+	<p><%= submit_tag("Submit") %></p>
+<% end %>
+
+<% File.open(Rails.root.join('mallet', 'data', 'outputfile.txt'), "r") do |f| %>
+	<% f.each_line do |line| %>
+    	<p> <%= line %> </p>
+  	<% end %>
+<% end %>
